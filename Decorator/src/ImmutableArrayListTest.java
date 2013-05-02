@@ -22,6 +22,13 @@ public class ImmutableArrayListTest {
 		testImmutableArray = new ImmutableArrayList<String>(testArray);
 	}
 
+	@Test
+	public void testComposedConstructor(){
+		TwoDimArrayList new2DArray = new TwoDimArrayList(testArray,2);
+		ImmutableArrayList composedImmuList = new ImmutableArrayList(new2DArray);
+		
+		assertTrue(composedImmuList.size() == 4);
+	}
 
 	@Test
 	public void testAddObject() {
@@ -29,7 +36,8 @@ public class ImmutableArrayListTest {
 			testImmutableArray.add("xin chao");
 		}
 		catch(UnsupportedOperationException E) {
-			assertTrue(testImmutableArray.get(testImmutableArray.size()-1) != "xin chao" && testImmutableArray.size() == testArray.size());
+			assertTrue(testImmutableArray.get(testImmutableArray.size()-1) != "xin chao");
+			assertTrue(testImmutableArray.size() == testArray.size());
 		}
 	}
 
@@ -39,7 +47,8 @@ public class ImmutableArrayListTest {
 			testImmutableArray.add(0,"xin chao");
 		}
 		catch(UnsupportedOperationException E) {
-			assertTrue(testImmutableArray.get(0) == testArray.get(0) && testImmutableArray.size() == testArray.size());
+			assertTrue(testImmutableArray.get(0) == testArray.get(0));
+			assertTrue(testImmutableArray.size() == testArray.size());
 		}
 	}
 
@@ -48,7 +57,7 @@ public class ImmutableArrayListTest {
 		ArrayList<String> testList = new ArrayList<String>();
 		testList.add("what's up");
 		testList.add("hi");
-		
+
 		try {
 			testImmutableArray.addAll(testList);
 		}
@@ -62,7 +71,7 @@ public class ImmutableArrayListTest {
 		ArrayList<String> testList = new ArrayList<String>();
 		testList.add("what's up");
 		testList.add("hi");
-		
+
 		try {
 			testImmutableArray.addAll(0,testList);
 		}
@@ -70,7 +79,6 @@ public class ImmutableArrayListTest {
 			assertTrue(testImmutableArray.size() == testArray.size());
 		}
 	}
-	
 
 	@Test
 	public void testClear() {
@@ -107,7 +115,7 @@ public class ImmutableArrayListTest {
 		ArrayList<String> testList = new ArrayList<String>();
 		testList.add("Hello");
 		testList.add("Ciao");
-		
+
 		try {
 			testImmutableArray.removeAll(testList);
 		}
@@ -116,7 +124,6 @@ public class ImmutableArrayListTest {
 		}
 	}
 
-	
 	@Test
 	public void testRemoveRange() {
 		try {
@@ -126,13 +133,13 @@ public class ImmutableArrayListTest {
 			assertTrue(testImmutableArray.size() == testArray.size());
 		}
 	}
-	
+
 	@Test
 	public void testRetainAllCollectionOfQ() {
 		ArrayList<String> testList = new ArrayList<String>();
 		testList.add("Hello");
 		testList.add("Ciao");
-		
+
 		try {
 			testImmutableArray.removeAll(testList);
 		}
@@ -154,14 +161,14 @@ public class ImmutableArrayListTest {
 
 	@Test
 	public void testSubListIntInt() {
-		
-	try {
-		
-		testImmutableArray.subList(0, 2).clear();
-	}
-	
-	catch (UnsupportedOperationException E){
-		assertTrue( testImmutableArray.size() == testArray.size());
-	}
+
+		try {
+
+			testImmutableArray.subList(0, 2).clear();
+		}
+
+		catch (UnsupportedOperationException E){
+			assertTrue( testImmutableArray.size() == testArray.size());
+		}
 	}
 }

@@ -15,7 +15,6 @@ public class TwoDimArrayListTest {
 	public void setUp() throws Exception {
 		testArray = new ArrayList<String>();
 		
-		
 		testArray.add("00");
 		testArray.add("10");
 		testArray.add("20");
@@ -26,6 +25,14 @@ public class TwoDimArrayListTest {
 		test2DArray = new TwoDimArrayList<String>(testArray,3);
 	}
 
+	@Test
+	public void testComposedConsturctor(){
+		ImmutableArrayList newImmuList = new ImmutableArrayList(testArray);
+		TwoDimArrayList composed2DArray = new TwoDimArrayList<String>(newImmuList,3);
+		
+		assertTrue(composed2DArray.size() == 6);
+	}
+	
 	@Test
 	public void testGetIntInt() {
 		String value = test2DArray.get(2, 1);

@@ -8,8 +8,7 @@ import java.util.ListIterator;
 public class ImmutableArrayList<E> extends ArrayList<E> {
 	public ArrayList<E> specialArray; 
 	
-	public ImmutableArrayList(ArrayList<E> newArray) {
-		
+	public ImmutableArrayList(ArrayList<E> newArray) {	
 		specialArray = new ArrayList<E>();
 		
 		for (int i = 0; i < newArray.size(); i++){
@@ -17,18 +16,24 @@ public class ImmutableArrayList<E> extends ArrayList<E> {
 		}
 	}
 	
+	public ImmutableArrayList(TwoDimArrayList<E> newArray) {
+		specialArray = new ArrayList<E>();
+		for (int i = 0; i < newArray.size(); i++){
+			specialArray.add(newArray.get(i));
+		}
+	}
 	
+	/*All the methods that add, remove or change any element of the arraylist
+	will become unsupported operations*/
 
 	@Override
-	public boolean add(Object e) {
-		
+	public boolean add(Object e) {	
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void add(int index, Object element) {
-		throw new UnsupportedOperationException();
-		
+		throw new UnsupportedOperationException();	
 	}
 	
 	@Override
@@ -45,12 +50,12 @@ public class ImmutableArrayList<E> extends ArrayList<E> {
 	public void clear() {
 		throw new UnsupportedOperationException();	
 	}
-	
-	
+		
 	@Override
 	public E get(int index){
 		return specialArray.get(index);
 	}
+	
 	@Override
 	public E remove(int index) {
 		throw new UnsupportedOperationException();
@@ -83,26 +88,13 @@ public class ImmutableArrayList<E> extends ArrayList<E> {
 	
 	@Override 
 	public int size(){
-		return specialArray.size();
-		
+		return specialArray.size();	
 	}
 	
 	@Override
 	public List<E> subList(int fromIndex,int toIndex){
 		throw new UnsupportedOperationException();
 	}
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
 }
 
 
