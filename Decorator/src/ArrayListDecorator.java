@@ -1,20 +1,25 @@
 import java.util.ArrayList;
 
 
-public class ArrayListDecorator{
-	public ArrayList specialArray; 
+public class ArrayListDecorator<E> extends ArrayList<E>{
+	public ArrayList<E> specialArray; 
 	
-	public ArrayListDecorator (ArrayList newArray){
+	public ArrayListDecorator (ArrayList<E> newArray){
 		for (int i = 0; i < newArray.size(); i++){
 			specialArray.add(newArray.get(i));
 		}
 	}
 	
-	public int size(){
-		return specialArray.size();
-	}
-	
-	public Object get(int index){
+	@Override 
+	public E get(int index){
 		return specialArray.get(index);
 	}
+	
+//	public int size(){
+//		return specialArray.size();
+//	}
+//	
+//	public Object get(int index){
+//		return specialArray.get(index);
+//	}
 }

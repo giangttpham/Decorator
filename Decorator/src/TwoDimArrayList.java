@@ -1,35 +1,42 @@
 import java.util.ArrayList;
 
 
-public class TwoDimArrayList {
-	protected ArrayList specialArray;
-	protected int row;
-	protected int col;
+public class TwoDimArrayList<E> extends ArrayList<E>{
+	protected ArrayList<E> specialArray;
+	protected int colCt;
 	
-	public TwoDimArrayList (ArrayList newArray, int rowCt, int colCt){
+	public TwoDimArrayList (ArrayList<E> newArray, int noOfCol){
+		
+		specialArray = new ArrayList<E>();
+		
 		for (int i = 0; i < newArray.size(); i++){
 			specialArray.add(newArray.get(i));
 		}
-		row = rowCt;
-		col = colCt;
+		
+		colCt = noOfCol;
 	}
 	
-	public int getRow(){
-		return row;
+	
+	@Override
+	public E get(int index){
+		return super.get(index);
 	}
 	
-	public int getColumn(){
-		return col;
-	}
 	
-	public int size(){
-		return specialArray.size();
-	}
-	
-	public Object get(int x, int y){
-		if ((y * col + x) < specialArray.size()-1)
-			return specialArray.get(y * col + x);
+	public E get(int col, int row){
+		int index = row * colCt + col;
+		if (index < specialArray.size())
+			return specialArray.get(index);	
 		else
-			return null;
+			throw new ArrayIndexOutOfBoundsException();
+	}
+	
+	
+	public void set(int col, int row, E newValue){
+		int index = row * colCt + col;
+		if (index < specialArray.size())
+			specialArray.set(index, newValue);
+		else
+			throw new ArrayIndexOutOfBoundsException();
 	}
 }
